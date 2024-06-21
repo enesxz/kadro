@@ -4,13 +4,187 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GANG GANG SLS KADRO SECİM</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            width: 300px;
+            background: #1c1c1c;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header {
+            position: relative;
+            background: url('img/ensar.png') no-repeat center center/cover;
+            height: 200px;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .header .subtitle {
+            font-size: 14px;
+            margin-top: 5px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .details {
+            padding: 20px;
+            text-align: left;
+            color: #fff;
+        }
+
+        .details .info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .details .info span {
+            display: inline-block;
+            width: 45%;
+        }
+
+        .player-info {
+            background: #333;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .button-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #6200ea;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background-color: #3700b3;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background-color: #333;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            animation: slideIn 0.5s ease-out;
+            color: white;
+        }
+
+        .modal-content img {
+            width: 100%;
+            max-width: 300px;
+            margin: 20px 0;
+        }
+
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>GANG GANG SLS KADRO SECİM</h1>
-        <div class="card">
-            <h2>ENSAR</h2>
+        <div class="header">
+            <h1>ENSAR</h1>
+            <p class="subtitle">Sarmaci</p>
+        </div>
+        <div class="details">
+            <div class="player-info">
+                <p><strong>Hedefi:</strong> Kız bulmak</p>
+                <p><strong>Boyu:</strong> bilinmiyor</p>
+                <p><strong>yasi</strong> 89</p>
+                <p><strong>Pozisyon:</strong> DEF</p>
+            </div>
+        </div>
+        <div class="button-container">
             <button class="btn" onclick="openEnsarWindow()">Göster</button>
         </div>
     </div>
@@ -19,12 +193,28 @@
         <div class="modal-content">
             <span class="close" onclick="closeEnsarWindow()">&times;</span>
             <h2>ENSAR (DEFANS)</h2>
-            <img src="img/ensar.png" alt="Ensar">
+            <img src="image-5.png" alt="Ensar">
             <button class="btn" onclick="goToFeatures()">Özellikler</button>
             <button class="btn" onclick="goToSecond()">2.DC</button>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function openEnsarWindow() {
+            document.getElementById("ensarWindow").style.display = "block";
+        }
+
+        function closeEnsarWindow() {
+            document.getElementById("ensarWindow").style.display = "none";
+        }
+
+        function goToFeatures() {
+            window.location.href = "https://66.com";
+        }
+
+        function goToSecond() {
+            window.location.href = "https://99.com";
+        }
+    </script>
 </body>
 </html>
