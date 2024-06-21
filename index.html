@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Sitesi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Genel Ayarlar */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #141414;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #141414;
+            color: #fff;
+            padding: 10px 50px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #e50914;
+        }
+
+        .banner {
+            background-image: url('https://via.placeholder.com/1920x1080');
+            background-size: cover;
+            background-position: center;
+            padding: 200px 20px;
+            color: #fff;
+            text-align: center;
+            margin-top: 80px;
+            position: relative;
+            animation: banner-fade-in 2s ease-in-out;
+        }
+
+        @keyframes banner-fade-in {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .banner:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .banner h2 {
+            font-size: 3em;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+            animation: slide-in 2s forwards;
+        }
+
+        .banner p {
+            font-size: 1.5em;
+            position: relative;
+            z-index: 2;
+            animation: fade-in 2s forwards;
+        }
+
+        @keyframes slide-in {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .films {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .film-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .film {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 200px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            animation: fade-in 1s forwards;
+        }
+
+        .film:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .film img {
+            width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .film:hover img {
+            transform: scale(1.1);
+        }
+
+        .film h3 {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .film p {
+            font-size: 0.9em;
+        }
+
+        .film button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #e50914;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .film button:hover {
+            background-color: #f40612;
+        }
+
+        .contact {
+            padding: 60px 20px;
+            text-align: center;
+            animation: fade-in 1s forwards;
+        }
+
+        footer {
+            background-color: #141414;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            animation: fade-in 1s forwards;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #333;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
+            position: relative;
+            animation: fade-in 0.5s forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: white;
+            text-decoration: none;
+        }
+
+        .code-block {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 5px;
+            width: 100%;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .code-block code {
+            display: block;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e50914;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+
+        .copy-button:hover {
+            background-color: #f40612;
+        }
+
+        @media (max-width: 768px) {
+            .film-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Film Sitesi</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Ana Sayfa</a></li>
+                <li><a href="#films">Filmler</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="banner">
+        <h2>Hoş Geldiniz!</h2>
+        <p>En iyi filmleri burada bulabilirsiniz.</p>
+    </section>
+
+    <section id="films" class="films">
+        <h2>Filmler</h2>
+        <div class="film-list" id="filmList">
+            <!-- Filmler buraya eklenecek -->
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>İletişim</h2>
+        <p>Bizimle iletişime geçin: info@filmsitesi.com</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Film Sitesi. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <div id="codeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div class="code-block">
+                <code id="codeContent"></code>
+                <button class="copy-button" onclick="copyCode()">Kopyala</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const films = [
+                { title: "Film 1", description: "Bu film çok heyecan verici!", imgSrc: "https://via.placeholder.com/150", codeTitle: "filmy", codeContent: "print(98)" },
+                { title: "Film 2", description: "Bu film çok duygusal!", imgSrc: "https://via.placeholder.com/150", codeTitle: "filmyu", codeContent: "console.log(88)" },
+                { title: "Film 3", description: "Bu film çok komik!", imgSrc: "https://via.placeholder.com/150", codeTitle: "filmyz", codeContent: "alert('Film 3')" },
+                { title: "Film 4", description: "Bu film çok korkutucu!", imgSrc: "https://via.placeholder.com/150", codeTitle: "filmyw", codeContent: "document.write('Film 4')" },
+                { title: "Film 5", description: "Bu film çok romantik!", imgSrc: "https://via.placeholder.com/150", codeTitle: "filmyx", codeContent: "prompt('Film 5')" },
+            ];
+
+            const filmList = document.getElementById('filmList');
+            films.forEach(film => {
+                const filmElement = document.createElement('div');
+                filmElement.className = 'film';
+                filmElement.innerHTML = `
+                    <img src="${film.imgSrc}" alt="${film.title}">
+                    <h3>${film.title}</h3>
+                    <p>${film.description}</p>
+                    <button onclick="showCode('${film.codeTitle}', \`${film.codeContent}\`)">İzle</button>
+                `;
+                filmList.appendChild(filmElement);
+            });
+        });
+
+        function showCode(title, codeContent) {
+            const modal = document.getElementById('codeModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const codeElement = document.getElementById('codeContent');
+
+            modalTitle.textContent = title;
+            codeElement.textContent = codeContent;
+            modal.style.display = "flex";
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('codeModal');
+            modal.style.display = "none";
+        }
+
+        function copyCode() {
+            const codeElement = document.getElementById('codeContent');
+            navigator.clipboard.writeText(codeElement.textContent).then(() => {
+                alert('Kod panoya kopyalandı!');
+            });
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('codeModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
+
+  
