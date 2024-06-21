@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,8 @@
 
         .container {
             position: relative;
-            width: 300px;
+            width: 90%;
+            max-width: 600px;
             background: #1c1c1c;
             border-radius: 15px;
             overflow: hidden;
@@ -138,23 +139,19 @@
             margin: 10% auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 80%;
-            max-width: 600px;
+            width: 90%;
+            max-width: 800px;
             border-radius: 10px;
             text-align: center;
             position: relative;
             animation: slideIn 0.5s ease-out;
             color: white;
-        }
-
-        .modal-content img {
-            width: 100%;
-            max-width: 300px;
-            margin: 20px 0;
+            overflow: auto;
+            max-height: 80vh;
         }
 
         .close {
-            color: #aaa;
+            color: white;
             position: absolute;
             top: 10px;
             right: 20px;
@@ -178,7 +175,8 @@
             border-radius: 20px;
             color: white;
             padding: 20px;
-            width: 400px;
+            width: 100%;
+            max-width: 400px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -261,14 +259,14 @@
     <div class="container">
         <div class="header">
             <h1>ENSAR</h1>
-            <p class="subtitle">Paris Saint-Germain</p>
+            <p class="subtitle">Sarmacı</p>
         </div>
         <div class="details">
             <div class="player-info">
-                <p><strong>Height:</strong> 178cm</p>
-                <p><strong>Weight:</strong> 73kg</p>
-                <p><strong>Age:</strong> 25</p>
-                <p><strong>Position:</strong> DEF</p>
+                <p><strong>Hedefi:</strong> imanli guzel bir kiz bulmak</p>
+                <p><strong>Dc:</strong> ensar.xr</p>
+                <p><strong>Yası:</strong> 90</p>
+                <p><strong>Pozisyon:</strong> DEF</p>
             </div>
         </div>
         <div class="button-container">
@@ -280,6 +278,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeEnsarWindow()">&times;</span>
             <div class="modal-body">
+                <img src="image-5.png" alt="Ensar">
                 <div class="futbolcu-karti">
                     <div class="baslik">ENSAR SARMACI</div>
                     <div class="ozellik" onclick="highlightFeature(this)">
@@ -367,6 +366,24 @@
             });
             element.classList.add('highlighted');
         }
+
+        // Cihaz türüne göre modal boyutlarını ayarla
+        function adjustModalSize() {
+            const modalContent = document.querySelector('.modal-content');
+            if (window.innerWidth <= 768) { // mobil cihazlar
+                modalContent.style.width = '90%';
+                modalContent.style.margin = '10% auto';
+            } else if (window.innerWidth <= 1024) { // tabletler
+                modalContent.style.width = '70%';
+                modalContent.style.margin = '5% auto';
+            } else { // masaüstü
+                modalContent.style.width = '50%';
+                modalContent.style.margin = '2% auto';
+            }
+        }
+
+        window.addEventListener('resize', adjustModalSize);
+        window.addEventListener('load', adjustModalSize);
     </script>
 </body>
 </html>
