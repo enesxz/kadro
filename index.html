@@ -168,20 +168,107 @@
             color: black;
             text-decoration: none;
         }
+
+        .modal-body {
+            text-align: left;
+        }
+
+        .futbolcu-karti {
+            background-color: #000;
+            border-radius: 20px;
+            color: white;
+            padding: 20px;
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s, transform 0.3s;
+            user-select: none;
+        }
+
+        .futbolcu-karti:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transform: scale(1.02);
+        }
+
+        .baslik {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .ozellik {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            user-select: none;
+            outline: none;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .ozellik:hover {
+            transform: scale(1.05);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .ozellik-baslik {
+            flex: 1;
+            color: #ccc;
+        }
+
+        .ozellik-puan {
+            flex: 1;
+            text-align: right;
+        }
+
+        .puan-kutu {
+            display: inline-block;
+            border-radius: 10px;
+            padding: 5px 10px;
+            animation: scaleup 0.3s;
+        }
+
+        .puan-text {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .puan-9-10 {
+            background-color: #4CAF50;
+        }
+
+        .puan-8-7 {
+            background-color: #FFA500;
+        }
+
+        .puan-6-1 {
+            background-color: #FF6347;
+        }
+
+        @keyframes scaleup {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>ENSAR</h1>
-            <p class="subtitle">Sarmaci</p>
+            <p class="subtitle">Paris Saint-Germain</p>
         </div>
         <div class="details">
             <div class="player-info">
-                <p><strong>Hedefi:</strong> Kız bulmak</p>
-                <p><strong>Boyu:</strong> bilinmiyor</p>
-                <p><strong>yasi</strong> 89</p>
-                <p><strong>Pozisyon:</strong> DEF</p>
+                <p><strong>Height:</strong> 178cm</p>
+                <p><strong>Weight:</strong> 73kg</p>
+                <p><strong>Age:</strong> 25</p>
+                <p><strong>Position:</strong> DEF</p>
             </div>
         </div>
         <div class="button-container">
@@ -192,10 +279,76 @@
     <div id="ensarWindow" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeEnsarWindow()">&times;</span>
-            <h2>ENSAR (DEFANS)</h2>
-            <img src="image-5.png" alt="Ensar">
-            <button class="btn" onclick="goToFeatures()">Özellikler</button>
-            <button class="btn" onclick="goToSecond()">2.DC</button>
+            <div class="modal-body">
+                <div class="futbolcu-karti">
+                    <div class="baslik">ENSAR SARMACI</div>
+                    <div class="ozellik" onclick="highlightFeature(this)">
+                        <div class="ozellik-baslik">Defans:</div>
+                        <div class="ozellik-puan">
+                            <div class="puan-kutu puan-9-10">
+                                <span class="puan-text">9.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ozellik" onclick="highlightFeature(this)">
+                        <div class="ozellik-baslik">Şut İsabet:</div>
+                        <div class="ozellik-puan">
+                            <div class="puan-kutu puan-8-7">
+                                <span class="puan-text">7.5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ozellik" onclick="highlightFeature(this)">
+                        <div class="ozellik-baslik">Çalım:</div>
+                        <div class="ozellik-puan">
+                            <div class="puan-kutu puan-9-10">
+                                <span class="puan-text">7.5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ozellik" onclick="highlightFeature(this)">
+                        <div class="ozellik-baslik">Pas İsabet:</div>
+                        <div class="ozellik-puan">
+                            <div class="puan-kutu puan-8-7">
+                                <span class="puan-text">7.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ozellik" onclick="highlightFeature(this)">
+                        <div class="ozellik-baslik">Kalecilik:</div>
+                        <div class="ozellik-puan">
+                            <div class="puan-kutu puan-6-1">
+                                <span class="puan-text">3.5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ozellik" onclick="highlightFeature(this)">
+                        <div class="ozellik-baslik">Forvet:</div>
+                        <div class="ozellik-puan">
+                            <div class="puan-kutu puan-8-7">
+                                <span class="puan-text">5.5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ozellik" onclick="highlightFeature(this)">
+                        <div class="ozellik-baslik">Ofansif Farkındalık:</div>
+                        <div class="ozellik-puan">
+                            <div class="puan-kutu puan-8-7">
+                                <span class="puan-text">8.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ozellik" onclick="highlightFeature(this)">
+                        <div class="ozellik-baslik">Orta Sağ:</div>
+                        <div class="ozellik-puan">
+                            <div class="puan-kutu puan-8-7">
+                                <span class="puan-text">8.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px; color: #ccc; font-size: 12px;">Sayılar 10 üzerinden değerlendirilmektedir.</div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -208,12 +361,11 @@
             document.getElementById("ensarWindow").style.display = "none";
         }
 
-        function goToFeatures() {
-            window.location.href = "https://66.com";
-        }
-
-        function goToSecond() {
-            window.location.href = "https://99.com";
+        function highlightFeature(element) {
+            document.querySelectorAll('.ozellik').forEach(function(item) {
+                item.classList.remove('highlighted');
+            });
+            element.classList.add('highlighted');
         }
     </script>
 </body>
