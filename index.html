@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GANG GANG SLS KADRO SECİM</title>
+    <title>GANG GANG SLS</title>
     <style>
         body {
             margin: 0;
@@ -253,20 +253,26 @@
             from { transform: scale(0.9); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            max-height: 300px; /* Resmin maksimum yüksekliği */
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>ENSAR</h1>
-            <p class="subtitle">Sarmacı</p>
+            <p class="subtitle">Paris Saint-Germain</p>
         </div>
         <div class="details">
             <div class="player-info">
-                <p><strong>Hedefi:</strong> imanli guzel bir kiz bulmak</p>
-                <p><strong>Dc:</strong> ensar.xr</p>
+                <p><strong>Hedefi:</strong> namaz kılan imanlı güzel bir kız bulmak</p>
                 <p><strong>Yası:</strong> 90</p>
-                <p><strong>Pozisyon:</strong> DEF</p>
+                <p><strong>Dc:</strong> ensar.xr</p>
+                <p><strong>Position:</strong> DEF</p>
             </div>
         </div>
         <div class="button-container">
@@ -278,7 +284,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeEnsarWindow()">&times;</span>
             <div class="modal-body">
-                <img src="image-5.png" alt="Ensar">
+                <img src="image-5.png" alt="Ensar Sarmacı">
                 <div class="futbolcu-karti">
                     <div class="baslik">ENSAR SARMACI</div>
                     <div class="ozellik" onclick="highlightFeature(this)">
@@ -367,16 +373,15 @@
             element.classList.add('highlighted');
         }
 
-        // Cihaz türüne göre modal boyutlarını ayarla
         function adjustModalSize() {
             const modalContent = document.querySelector('.modal-content');
-            if (window.innerWidth <= 768) { // mobil cihazlar
+            if (window.innerWidth <= 768) {
                 modalContent.style.width = '90%';
                 modalContent.style.margin = '10% auto';
-            } else if (window.innerWidth <= 1024) { // tabletler
+            } else if (window.innerWidth <= 1024) {
                 modalContent.style.width = '70%';
                 modalContent.style.margin = '5% auto';
-            } else { // masaüstü
+            } else {
                 modalContent.style.width = '50%';
                 modalContent.style.margin = '2% auto';
             }
